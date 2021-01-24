@@ -901,6 +901,94 @@ int hasdivisor(family p)
 		mpz_clears(gcd, temp, gcd1, gcd2, x, y, z, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10, empty, NULL);
 		return 1;
 	}
+ 
+        char residues[42] = {1};
+	for(int i=0; i<p.len; i++)
+	{	if((unsigned char)p.digit[i]!=255)
+		{	char newresidues[42] = {0};
+			for(int j=0; j<42; j++)
+			{	if(residues[j]==1)
+					newresidues[(j*base+p.digit[i])%42] = 1;
+			}
+			memcpy(residues, newresidues, 42);
+		}
+		int haschanged = 1;
+		while(haschanged)
+		{	haschanged = 0;
+			for(int j=0; j<p.numrepeats[i]; j++)
+			{	for(int l=0; l<42; l++)
+				{	if(residues[l]==1 && residues[(l*base+p.repeats[i][j])%42]==0)
+					{	residues[(l*base+p.repeats[i][j])%42] = 1;
+						haschanged = 1;
+					}
+				}
+			}
+		}
+	}
+
+	int coprimeres = 0;
+	for(int i=0; i<42; i++)
+	{	if(residues[i]==1)
+		{	mpz_set_ui(temp, i);
+			mpz_gcd_ui(temp, temp, 42);
+			if(mpz_cmp_ui(temp, 1)==0)
+				coprimeres = 1;
+		}
+	}
+
+	if(!coprimeres)
+	{	
+#ifdef PRINTDIVISOREXT
+		familystring(str, p);
+		gmp_printf("\nevery number in %s is divisible by one of 2, 3, or 7\n", str);
+#endif
+		mpz_clears(gcd, temp, gcd1, gcd2, x, y, z, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10, empty, NULL);
+		return 1;
+	}
+ 
+        char residues[70] = {1};
+	for(int i=0; i<p.len; i++)
+	{	if((unsigned char)p.digit[i]!=255)
+		{	char newresidues[70] = {0};
+			for(int j=0; j<70; j++)
+			{	if(residues[j]==1)
+					newresidues[(j*base+p.digit[i])%70] = 1;
+			}
+			memcpy(residues, newresidues, 70);
+		}
+		int haschanged = 1;
+		while(haschanged)
+		{	haschanged = 0;
+			for(int j=0; j<p.numrepeats[i]; j++)
+			{	for(int l=0; l<70; l++)
+				{	if(residues[l]==1 && residues[(l*base+p.repeats[i][j])%70]==0)
+					{	residues[(l*base+p.repeats[i][j])%70] = 1;
+						haschanged = 1;
+					}
+				}
+			}
+		}
+	}
+
+	int coprimeres = 0;
+	for(int i=0; i<70; i++)
+	{	if(residues[i]==1)
+		{	mpz_set_ui(temp, i);
+			mpz_gcd_ui(temp, temp, 70);
+			if(mpz_cmp_ui(temp, 1)==0)
+				coprimeres = 1;
+		}
+	}
+
+	if(!coprimeres)
+	{	
+#ifdef PRINTDIVISOREXT
+		familystring(str, p);
+		gmp_printf("\nevery number in %s is divisible by one of 2, 5, or 7\n", str);
+#endif
+		mpz_clears(gcd, temp, gcd1, gcd2, x, y, z, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10, empty, NULL);
+		return 1;
+	}
 
 	mpz_clears(gcd, temp, gcd1, gcd2, x, y, z, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10, empty, NULL);
 	return 0;
