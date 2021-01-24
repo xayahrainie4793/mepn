@@ -322,6 +322,14 @@ void clearfamily(family* f)
 char digitchar(unsigned char digit)
 {	if(digit==255)
 		return 0;
+        else if(digit>=83)
+		return digit+'@'-83;
+        else if(digit>=77)
+		return digit+':'-77;
+        else if(digit>=62)
+		return digit+'!'-62;
+        else if(digit>=36)
+		return digit+'a'-36;
 	else if(digit>=10)
 		return digit+'A'-10;
 	else
@@ -333,6 +341,14 @@ char invdigitchar(char input)
 		return input-'0';
 	else if(input>='A' && input<='Z')
 		return input-'A'+10;
+        else if(input>='a' && input<='z')
+		return input-'a'+36;
+        else if(input>='!' && input<='/')
+		return input-'!'+62;
+        else if(input>=':' && input<='?')
+		return input-':'+77;
+        else if(input=="@")
+		return 83;
 }
 
 void familystring(char* str, family p)
