@@ -5,17 +5,17 @@ The following programs are useful for computing minimal elements for prime numbe
 
 minimal:
 	Computes minimal primes for bases between l and h,
-	possibly along with a set of unsolved families.
-	Usage: minimal l h
-	To resume base b from iter i: minimal resume b i
+	possibly along with a set of unsolved families
+	Usage: ./minimal l h
+	To resume base b from iteration i: ./minimal resume b i
 
 simple:
-	This program searches unsolved simple families
+	This program searches all unsolved simple families
 	for prime candidates between exponents n and m,
 	given on the command-line
 
 sieving.start:
-	Initializes sieve files for all unsolved families
+	Initializes sieve files for all unsolved simple families
 	between exponents n and m, given on the command-line
 	which may then be processed by programs sieving and search
 
@@ -28,10 +28,11 @@ sieving:
 
 search:
 	After sieving has been done, this program uses LLR
-	to search for prime candidates between exponents
-	n and m, given on the command-line (optionally, a
-	base b may be given as a third parameter)
-	Alternatively, "./search -" searches everything
+	to search for prime candidates between exponents n and m
+	Usage: ./search n m
+	To only search base b: ./search n m b
+	To only search the ith family in base b: ./search n m b i
+	To search everything: ./search -
 
 	NOTE: The program llr must be located in the base directory
 
@@ -44,9 +45,15 @@ organize:
 	Sorts the minimal primes and removes any extraneous elements
 
 check:
-	Checks the minimal primes using a pseduoprime test and
+	Checks the minimal primes using a probable prime test and
 	creates candidate files suitable for testing with Primo
 
 summary:
 	Writes a summary of the minimal prime data
-	computed found for each base on the standard output
+	computed for each base on the standard output
+
+unsolved:
+	Writes a summary of each simple unsolved family on the standard output
+
+Precomputed results for many bases can be found at:
+	https://github.com/curtisbright/mepn-data/tree/master/data
