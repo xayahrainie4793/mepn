@@ -4,7 +4,7 @@ MEPN Implementation
 The following programs are useful for computing minimal elements for prime numbers in various bases:
 
 minimal:
-	Computes minimal primes for bases between l and h,
+	Computes minimal primes (start with b+1) for bases b between l and h,
 	possibly along with a set of unsolved families
 	Usage: ./minimal l h
 	To resume base b from iteration i: ./minimal resume b i
@@ -54,6 +54,3 @@ summary:
 
 unsolved:
 	Writes a summary of each simple unsolved family on the standard output
-
-Precomputed results for many bases can be found at:
-	https://github.com/curtisbright/mepn-data/tree/master/data
