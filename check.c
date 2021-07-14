@@ -6,7 +6,7 @@
 #include <dirent.h>
 #include <string.h>
 #include <gmp.h>
-#define MAXSTRING 1200000
+#define MAXSTRING 2500000
 #define GMPTESTCUTOFF 1000
 #define PRINTPRIMO 0
 
