@@ -7,7 +7,7 @@
 #include <gmp.h>
 #include <stdbool.h>
 #include <unistd.h>
-#define MAXSTRING 1200000
+#define MAXSTRING 2500000
 #define min(a,b) (((a) < (b)) ? (a) : (b))
 
 FILE *popen(const char *command, const char *type);
@@ -167,7 +167,7 @@ int main(int argc, char** argv)
 
 					char prime[MAXSTRING];
 					int hassubword = 0;
-					char output[1000000] = {0};
+					char output[2500000] = {0};
 
 					FILE* kernel = fopen(kernelfilename, "r");
 					while(kernel==NULL)
@@ -243,7 +243,7 @@ int main(int argc, char** argv)
 					FILE* llrprocess = NULL;
 					while(llrprocess==NULL)
 						llrprocess = popen(llrstr, "r");
-					int n = fread(output, 1, 999999, llrprocess);
+					int n = fread(output, 1, 2499999, llrprocess);
 					output[n] = '\0';
 					pclose(llrprocess);
 					if(strstr(output, "(Factored")!=NULL)
