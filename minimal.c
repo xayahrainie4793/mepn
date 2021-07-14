@@ -275,7 +275,7 @@ int isprime(char* p)
 {	mpz_t temp;
 	mpz_init(temp);
 	mpz_set_str(temp, p, base);
-	if(mpz_probab_prime_p(temp, 25) > 0 && temp > base)
+	if(mpz_probab_prime_p(temp, 25) > 0)
 	{	//gmp_printf("%Zd is prime\n", temp);
 		mpz_clear(temp);
 		return 1;
@@ -472,21 +472,15 @@ int hasdivisor(family p)
 	emptyinstancestring(str, p);
 	mpz_set_str(empty, str, base);
 	mpz_set_str(gcd, str, base);
-	int allsingledigit = 1;
 	for(int i=0; i<p.len; i++)
 	{	for(int j=0; j<p.numrepeats[i]; j++)
 		{	instancestring(str, p, i, j);
 			mpz_set_str(temp, str, base);
 			mpz_gcd(gcd, gcd, temp);
-			if(temp > base)
-				allsingledigit = 0;
 		}
 		if(p.numrepeats[i]>0)
 			numrepeats++;
 	}
-
-	if(allsingledigit)
-		return 1;
 
 	if(numrepeats==0)
 	{	
@@ -1815,9 +1809,9 @@ int main(int argc, char** argv)
 	int l, h, resume = 0;
 	if(argc==1)
 	{	printf("Computes minimal primes for bases between l and h,\n");
-		printf("possibly along with a set of unsolved families.\n");
-		printf("Usage: minimal l h\n");
-		printf("To resume base b from iter i: minimal resume b i\n");
+		printf("possibly along with a set of unsolved families\n");
+		printf("Usage: ./minimal l h\n");
+		printf("To resume base b from iteration i: ./minimal resume b i\n");
 		return 0;
 	}
 	else if(strcmp(argv[1], "resume")==0)
