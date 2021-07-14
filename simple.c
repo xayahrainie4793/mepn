@@ -5,7 +5,7 @@
 #include <string.h>
 #include <time.h>
 #include <gmp.h>
-#define MAXSTRING 120000
+#define MAXSTRING 2500000
 
 int subword(char* prime, char* start, char middle, char* end, int* k)
 {	int i=0, j=0, l=0;
