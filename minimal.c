@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <gmp.h>
 #include <string.h>
-#define MAXSTRING 200
+#define MAXSTRING 500
 
 #ifdef PRINTALL
 #define PRINTDATA
