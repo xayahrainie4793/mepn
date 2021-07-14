@@ -42,7 +42,7 @@ merge:
 	so that duplication of work does not occur
 
 organize:
-	Sorts the minimal primes and removes any extraneous elements
+	Sorts the minimal primes (start with b+1) in base b and removes any extraneous elements
 
 check:
 	Checks the minimal primes using a probable prime test and
